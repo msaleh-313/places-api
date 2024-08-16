@@ -29,6 +29,8 @@ class Api::V1::PlacesController<ApplicationController
   private
     def set_place
       @place=Place.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => error
+        render json:{message: error.message ,status: "failed "}
     end
     def place_params 
       params.require(:place).permit(:name,:description,:latitude,:longitude,:city,:state,:country,:image_url)

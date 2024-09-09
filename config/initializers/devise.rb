@@ -331,7 +331,7 @@ Devise.setup do |config|
     jwt.expiration_time=120.minutes.to_i
 
     # 5-> api ko deal karrha hn to flash message signup/in k ni chahiye wrna error ayega postman per
-    #config.navigation ko empty array set kardo
+    # oper issi file may config.navigation ko empty array set kardo
     
     
     # 6-> application.rb may ja k changing karo ab

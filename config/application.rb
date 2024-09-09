@@ -28,5 +28,35 @@ module TouristsPlaces
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+                              
+    
+                              #step 6 continue
+                              
+                              
+  #This line tells Rails to store session data in cookies 
+  #and sets a name for the session cookie called "_interslice_session".    
+  #The key: "_interslice_session" part gives a unique name to the session cookie.
+  # This prevents conflicts with other cookies that might be set by other apps or parts of your site.
+    config.session_store :cookie_store ,key: "_interslice_session"
+
+
+  #This line adds cookie support to the Rails app by including ActionDispatch::Cookies in the middleware stack.
+  #When a request comes in,this middleware checks if there is a cookie from the user’s browser.If the cookie is there,
+  #the middleware reads it, and your Rails app can access the session data stored in the cookie.
+    config.middleware.use ActionDispatch::Cookies
+
+  # This line applies the session store configuration (set in the first line) to the middleware stack. 
+  # This enables Rails to manage user sessions using cookies.
+  # It ensures that the cookie store (which stores session data in cookies) is actually used when processing requests. 
+  # Without this, the session data would not be saved in cookies properly.
+  # This ties together the session store settings and the middleware that handles each request.
+  # It ensures that the session data (like a JWT token) is correctly saved in cookies and sent back to the server 
+  # whenever the user makes a request.
+
+
+    config.middleware.use config.session_store ,config.session_options 
+
+
   end
 end
